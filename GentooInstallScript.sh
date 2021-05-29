@@ -23,11 +23,11 @@ label:dos
 ;
 EOF
 	sfdisk -A $install_drive 1
-	mkfs.vfat -F 32 "$install_drive1"
-	mkfs.ext4 "$install_drive3"
-	mkswap "$install_drive2"
-	swapon "$install_drive2"
-	mount "$install_drive4" /mnt/gentoo
+	mkfs.vfat -F 32 "$install_drive"1
+	mkfs.ext4 "$install_drive"3
+	mkswap "$install_drive"2
+	swapon "$install_drive"2
+	mount "$install_drive"3 /mnt/gentoo
 
 	#set date
 	ntpd -q -g
@@ -36,7 +36,7 @@ EOF
 	#get stage3
 	cd /mnt/gentoo
 	wget $stage3_download
-	tar xpvf "stage3*" --xattrs-include='*.*' --numeric-owner
+	tar xpvf stage3* --xattrs-include='*.*' --numeric-owner
 
 	#prepare for chroot
 	cp --dereference /etc/resolv.conf /mnt/gentoo/etc
