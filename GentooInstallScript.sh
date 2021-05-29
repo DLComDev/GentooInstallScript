@@ -36,7 +36,7 @@ EOF
 	#get stage3
 	cd /mnt/gentoo
 	wget $stage3_download
-	tar xpvf stage3* --xattrs-include='*.*' --numeric-owner
+	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
 
 	#prepare for chroot
 	cp --dereference /etc/resolv.conf /mnt/gentoo/etc
