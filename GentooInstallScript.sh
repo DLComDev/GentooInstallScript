@@ -13,6 +13,11 @@ then
 	fdisk $install_drive
 	o
 	n
+	p
+	1
+	2048
+	+256M
+	w
 
 fi
 
