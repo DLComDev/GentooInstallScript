@@ -10,15 +10,13 @@ fi
 if [ $EFI = "false" ]
 then
 	dd if=/dev/zero of=$install_drive bs=512 count=1
-	fdisk $install_drive << EOF
-	o
-	n
-	p
-	1
-	2048
-	+256M
-	w
-	EOF
+	sfdisk $install_drive << EOF
+label:dos
+,256M
+,4G 0x82
+;
+EOF
+	
 
 fi
 
