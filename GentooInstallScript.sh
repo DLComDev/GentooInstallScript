@@ -130,8 +130,12 @@ then
 	emerge -q sys-kernel/genkernel
 	emerge -q sys-apps/pciutils
 	emerge -q app-arch/lzop app-arch/lz4
-	
-	echo ""$install_drive"1 /boot ext2 defaults 0 2" > /etc/fstab
+
+	if [ $EFI = "false" ]
+	then
+		echo ""$install_drive"1 /boot ext2 defaults 0 2" > /etc/fstab
+	fi
+
 	genkernel all
 
 	#install firmware
@@ -184,6 +188,7 @@ then
 	fi
 	if [ $EFI = "true" ]
 	then
+		mount "$install_drive"2 /boot
 		echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 		emerge -q sys-boot/grub:2
 		grub-install --target=x86_64-efi --efi-directory=/boot
